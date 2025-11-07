@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Bio Saya - Minimalis Modern</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* 🚀 Variable Warna (Minimalis & Kontras) */
+        :root {
+            /* DEFAULT: DARK MODE */
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-color: #ffffff; 
+            --accent-color: #00bcd4;
+            --border-color: #333333;
+            --error-color: #ff5722;
+        }
+
+        /* LIGHT MODE TEMA */
+        html[data-theme='light'] {
+            --bg-color: #ffffff;
+            --surface-color: #f0f0f0;
+            --text-color: #333333;
+            --accent-color: #007bff;
+            --border-color: #cccccc;
+            --error-color: #e91e63;
+        }
+
+        /* --- Gaya Dasar & Reset --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            min-height: 100vh;
+            padding: 30px 20px;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            position: relative;
+            display: none; 
+            flex-direction: column; 
+            align-items: center;
+        }
+        
+        /* --- Gaya Halaman Login Minimalis --- */
+        #login-page {
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 10px;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            transition: opacity 0.5s ease;
+        }
+        
+        #login-page h2 {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        #login-page p {
+            margin-bottom: 15px; 
+        }
+
+        #password-input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text-color);
+            background: var(--bg-color); 
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        #password-input:focus {
+            border-color: var(--accent-color); 
+        }
+
+        #submit-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--bg-color);
+            background-color: var(--accent-color);
+            transition: opacity 0.2s ease;
+        }
+        
+        #submit-btn:hover {
+            opacity: 0.9;
+        }
+        
+        #submit-btn:active {
+            opacity: 0.7;
+        }
+        
+        #error-message {
+            color: var(--error-color);
+            margin-top: 15px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* --- Gaya Link Bio Minimalis --- */
+
+        .profile h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        .profile p {
+            font-size: 0.95rem;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        /* Gaya Kontainer Profil (Lingkaran) */
+        .minimalist-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color); 
+            padding: 2px; 
+            transition: border-color 0.4s ease;
+            
+            display: inline-block; 
+            
+            background-color: var(--surface-color);
+            margin: 0 auto; 
+            overflow: hidden; 
+        }
+        
+        /* 🔥 CSS untuk Gambar Custom */
+        .minimalist-img img {
+            display: block;
+            width: 100%; /* Memastikan gambar mengisi seluruh lingkaran */
+            height: 100%;
+            border-radius: 50%; /* Menjaga bentuk lingkaran pada gambar */
+            object-fit: cover; /* Memastikan gambar tidak terdistorsi */
+        }
+        
+        /* Hapus semua style lama untuk ikon tunas */
+
+        .minimalist-link {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 15px 20px;
+            margin: 15px 0;
+            text-decoration: none;
+            color: var(--text-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            
+            background: var(--surface-color);
+            border: 1px solid var(--border-color); 
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .minimalist-link:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color); 
+            border-color: var(--accent-color);
+        }
+
+        .minimalist-link:active {
+            opacity: 0.9;
+        }
+
+        .minimalist-link:hover i {
+            color: var(--bg-color); 
+        }
+
+        .minimalist-link i {
+            margin-right: 15px;
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        /* Tombol Toggle */
+        #theme-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        #theme-toggle:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border-color: var(--accent-color);
+        }
+        
+        #theme-toggle i {
+            font-size: 1rem;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div id="login-page">
+        <h2>Akses Terproteksi</h2>
+        <p>Masukkan kata sandi untuk melanjutkan.</p>
+        <input type="password" id="password-input" placeholder="Kata Sandi">
+        <button id="submit-btn">Masuk</button>
+        <p id="error-message">Kata sandi salah. Coba lagi.</p>
+    </div>
+    
+    <div class="container" id="link-bio-content">
+        <button id="theme-toggle" aria-label="Toggle dark/light theme">
+            <i class="fas fa-sun"></i> 
+        </button>
+
+        <div class="profile">
+            
+            <div class="minimalist-img">
+                <img src="profile.png" alt="Foto Profil">
+            </div>
+            
+            <h1>Aisiiyan</h1>
+            <p>"Penyintas adalah jiwa yang retak namun tak hancur - yang menjahit luka dengan harapan, dan melangkah meski dunia pernah runtuh.”</p>
+        </div>
+
+        <div class="links">
+            <a href="https://www.instagram.com/akun-anda" class="minimalist-link" target="_blank">
+                <i class="fas fa-link"></i> Instagram Saya
+            </a>
+            
+            <a href="https://www.youtube.com/channel/channel-anda" class="minimalist-link" target="_blank">
+                <i class="fas fa-link"></i> Channel YouTube
+            </a>
+            
+            <a href="https://twitter.com/akun-anda" class="minimalist-link" target="_blank">
+                <i class="fas fa-link"></i> Twitter/X Saya
+            </a>
+            
+            <a href="https://wa.me/nomor-anda" class="minimalist-link" target="_blank">
+                <i class="fas fa-link"></i> Hubungi via WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const CORRECT_PASSWORD = "y2k"; // 🔥 Kata sandi yang benar
+
+            const loginPage = document.getElementById('login-page');
+            const bioContent = document.getElementById('link-bio-content');
+            const passwordInput = document.getElementById('password-input');
+            const submitBtn = document.getElementById('submit-btn');
+            const errorMessage = document.getElementById('error-message');
+            const body = document.body;
+            
+            // --- FUNGSI LOGIN ---
+            const checkPassword = () => {
+                const enteredPassword = passwordInput.value.toLowerCase();
+                
+                if (enteredPassword === CORRECT_PASSWORD) {
+                    // Password Benar: Sembunyikan halaman login, tampilkan bio
+                    loginPage.style.opacity = '0';
+                    setTimeout(() => {
+                        loginPage.style.display = 'none';
+                        bioContent.style.display = 'flex'; 
+                        body.style.alignItems = 'flex-start'; 
+                    }, 500); 
+                    
+                    sessionStorage.setItem('hasAccess', 'true'); 
+                } else {
+                    // Password Salah: Tampilkan pesan error
+                    errorMessage.style.opacity = '1';
+                    passwordInput.value = '';
+                    setTimeout(() => {
+                         errorMessage.style.opacity = '0';
+                    }, 2000);
+                }
+            };
+            
+            // Cek jika sudah pernah login di sesi ini
+            if (sessionStorage.getItem('hasAccess') === 'true') {
+                loginPage.style.display = 'none';
+                bioContent.style.display = 'flex';
+                body.style.alignItems = 'flex-start';
+            } else {
+                bioContent.style.display = 'none';
+                body.style.alignItems = 'center'; 
+            }
+            
+            // Event Listener
+            submitBtn.addEventListener('click', checkPassword);
+            passwordInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+
+
+            // --- FUNGSI DARK/LIGHT MODE ---
+            const toggleButton = document.getElementById('theme-toggle');
+            const htmlElement = document.querySelector('html');
+
+            const updateIcon = (theme) => {
+                if (!toggleButton) return; 
+
+                toggleButton.innerHTML = '';
+                const icon = document.createElement('i');
+                if (theme === 'dark') {
+                    icon.className = 'fas fa-sun';
+                } else {
+                    icon.className = 'fas fa-moon';
+                }
+                toggleButton.appendChild(icon);
+            };
+
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                htmlElement.setAttribute('data-theme', storedTheme);
+                updateIcon(storedTheme);
+            } else {
+                updateIcon(htmlElement.getAttribute('data-theme') || 'dark');
+            }
+
+            if (toggleButton) {
+                toggleButton.addEventListener('click', () => {
+                    const currentTheme = htmlElement.getAttribute('data-theme') || 'dark';
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    htmlElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateIcon(newTheme);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
